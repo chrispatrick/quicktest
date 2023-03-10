@@ -11,3 +11,9 @@ package vulnerabilities
 		some vulnerability in input.vulnerabilities
 		vulnerability.cvss.severity == "HIGH"
 	}
+	
+	fail if {
+		input.vulnerabilityDiff != undefined
+		some vulnerability in input.vulnerabilityDiff.vulnsAdded
+		vulnerability.cvss.severity == "HIGH"
+	}
