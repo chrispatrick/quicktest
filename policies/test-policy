@@ -1,1 +1,14 @@
-[:find ?e :in $ :where [?e :schema/entity-type :docker/image]]
+[:find ?purl
+        :in $ [?digest ?cve-id]
+        :where
+        [?image :docker.image/digest ?digest]
+        (or-join [?image ?package]
+                 [?image :sbom/artifacts ?package]
+                 (and
+                  [?image :artifact/dependencies ?image-dep]
+                  [?image-dep :package.dependency/package ?package]))
+        [?package :package/url ?purl]
+        [?advisory :vulnerability.advisory/url ?purl]
+        [?vuln :vulnerability/advisories ?advisory]
+        [?vuln :vulnerability/source-id ?cve-id]
+        ]
