@@ -1,0 +1,23 @@
+[:find ?purl
+        :in $ [?digest ?oldDigest ?severity]
+        :where
+        [?image :docker.image/digest ?digest]
+        (or-join [?image ?package]
+                 [?image :sbom/artifacts ?package]
+                 (and
+                  [?image :artifact/dependencies ?image-dep]
+                  [?image-dep :package.dependency/package ?package]))
+        [?package :package/url ?purl]
+        [?advisory :vulnerability.advisory/url ?purl]
+        [?vuln :vulnerability/advisories ?advisory]
+        [?vuln :vulnerability/references ?reference]
+        [?reference :vulnerability.reference/scores ?score]
+        [?score :vulnerability.reference.score/value ?severity]
+        (not [?image :docker.image/digest ?oldDigest]
+        (or-join [?image ?package]
+                 [?image :sbom/artifacts ?package]
+                 (and
+                  [?image :artifact/dependencies ?image-dep]
+                  [?image-dep :package.dependency/package ?package]))
+        [?package :package/url ?purl] )
+        ]
