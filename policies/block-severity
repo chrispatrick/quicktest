@@ -6,8 +6,8 @@
   :results [{:name "Package URL"} {:name "Fixed By"} {:name "CVE"}]
 }
 
-[:find ?purl ?fixed-by
-        :in $ [?digest ?severity ?cve-id]
+[:find ?purl ?fixed-by ?cve-id
+        :in $ [?digest ?severity]
         :where
         [?image :docker.image/digest ?digest]
         (or-join [?image ?package]
