@@ -1,4 +1,4 @@
-[:find ?purl
+[:find ?purl ?fixed-by
         :in $ [?digest ?severity]
         :where
         [?image :docker.image/digest ?digest]
@@ -9,6 +9,8 @@
                   [?image-dep :package.dependency/package ?package]))
         [?package :package/url ?purl]
         [?advisory :vulnerability.advisory/url ?purl]
+        [?advisory :vulnerability.advisory/versions ?advisory-version]
+        [?advisory-version :vulnerability.advisory.version/fixed-by ?fixed-by]
         [?vuln :vulnerability/advisories ?advisory]
         [?vuln :vulnerability/references ?reference]
         [?reference :vulnerability.reference/scores ?score]
