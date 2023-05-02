@@ -17,10 +17,10 @@
                   [?image-dep :package.dependency/package ?package]))
         [?package :package/url ?purl]
         [?advisory :vulnerability.advisory/url ?purl]
-        [?advisory :vulnerability.advisory/source-id ?cve-id]
         [?advisory :vulnerability.advisory/versions ?advisory-version]
         [?advisory-version :vulnerability.advisory.version/fixed-by ?fixed-by]
         [?vuln :vulnerability/advisories ?advisory]
+        [?vuln :vulnerability/source-id ?cve-id]
         [?vuln :vulnerability/references ?reference]
         [?reference :vulnerability.reference/scores ?score]
         [?score :vulnerability.reference.score/value ?severity]
