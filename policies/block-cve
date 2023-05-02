@@ -1,3 +1,11 @@
+^{:name "Block CVE"
+  :failure-msg "This image has the specified CVE"
+  :success-msg "This image does not have the specified CVE"
+  :success-mode :empty-results
+  :args [{:name "Image digest"} {:name "CVE id"}]
+  :results [{:name "Package URL"}]
+}
+
 [:find ?purl
         :in $ [?digest ?cve-id]
         :where
