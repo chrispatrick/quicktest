@@ -3,7 +3,7 @@
   :success-msg "This image has no vulnerabilities of the specified severity"
   :success-mode :empty-results
   :args [{:name "Image digest"} {:name "Severity"}]
-  :results [{:name "Package URL"} {:name "Fixed By"} {:name "CVE"]
+  :results [{:name "Package URL"} {:name "Fixed By"} {:name "CVE"}]
 }
 
 [:find ?purl ?fixed-by
