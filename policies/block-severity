@@ -6,7 +6,7 @@
   :results [{:name "Package URL"} {:name "Fixed By"}]
 }
 
-[:find ?purl ?fixed-by
+[:find ?purl ?fixed-by ?cve-id
         :in $ [?digest ?severity]
         :where
         [?image :docker.image/digest ?digest]
@@ -17,6 +17,7 @@
                   [?image-dep :package.dependency/package ?package]))
         [?package :package/url ?purl]
         [?advisory :vulnerability.advisory/url ?purl]
+        [?advisory :vulnerability.advisory/source-id ?cve-id]
         [?advisory :vulnerability.advisory/versions ?advisory-version]
         [?advisory-version :vulnerability.advisory.version/fixed-by ?fixed-by]
         [?vuln :vulnerability/advisories ?advisory]
