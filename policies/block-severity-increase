@@ -1,3 +1,11 @@
+^{:name "Block Severity Increase"
+  :failure-msg "This image has an increased number of vulnerabilities of the specified severity"
+  :success-msg "This image has the same or fewer vulnerabilities of the specified severity"
+  :success-mode :empty-results
+  :args [{:name "Image digest"} {:name "Previous image digest"} {:name "Severity"}]
+  :results [{:name "Package URL"}]
+}
+
 [:find ?purl
         :in $ [?digest ?oldDigest ?severity]
         :where
