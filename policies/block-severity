@@ -1,3 +1,11 @@
+^{:name "Block Severity"
+  :failure-msg "This image has vulnerabilities of the specified severity"
+  :success-msg "This image has no vulnerabilities of the specified severity"
+  :success-mode :empty-results
+  :args [{:name "Image digest"} {:name "Severity"}]
+  :results [{:name "Package URL"} {:name "Fixed By"}]
+}
+
 [:find ?purl ?fixed-by
         :in $ [?digest ?severity]
         :where
